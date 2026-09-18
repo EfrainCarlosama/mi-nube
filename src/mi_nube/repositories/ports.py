@@ -1,0 +1,49 @@
+from __future__ import annotations
+
+from typing import Protocol
+
+from mi_nube.domain.models import (
+    FolderPermissionRule,
+    PermissionChange,
+    Project,
+    ProjectFolder,
+    ProjectMember,
+    ProjectTemplate,
+)
+
+
+class ProjectRepository(Protocol):
+    def save_default_template(self, template: ProjectTemplate) -> None: ...
+
+    def get_default_template(self) -> ProjectTemplate | None: ...
+
+    def add_project(self, project: Project, folders: tuple[ProjectFolder, ...]) -> None: ...
+
+    def list_projects(self) -> tuple[Project, ...]: ...
+
+    def list_folders(self, project_id: str) -> tuple[ProjectFolder, ...]: ...
+
+    def get_project(self, project_id: str) -> Project | None: ...
+
+    def add_member(
+        self,
+        member: ProjectMember,
+        rule: FolderPermissionRule | None = None,
+        change: PermissionChange | None = None,
+    ) -> None: ...
+
+    def list_members(self, project_id: str) -> tuple[ProjectMember, ...]: ...
+
+    def get_member(self, member_id: str) -> ProjectMember | None: ...
+
+    def update_member_role(self, member_id: str, role: str, modified_at: str) -> None: ...
+
+    def delete_member(self, member_id: str) -> None: ...
+
+    def upsert_rule(self, rule: FolderPermissionRule, change: PermissionChange) -> None: ...
+
+    def list_rules(self, member_id: str) -> tuple[FolderPermissionRule, ...]: ...
+
+    def get_rule(self, member_id: str, target_item_id: str) -> FolderPermissionRule | None: ...
+
+    def list_changes(self, project_id: str) -> tuple[PermissionChange, ...]: ...
