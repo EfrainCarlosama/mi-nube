@@ -1,9 +1,9 @@
-# Inventario local previo a publicación
+# Inventario de publicación
 
 Fecha de revisión: 18/09/2026
 
 Este inventario enumera exactamente los archivos preparados en el repositorio local.
-Un commit local no implica publicación: el repositorio no tiene conexión remota.
+Este inventario enumera los archivos publicados en el repositorio oficial. Cada cambio futuro debe superar nuevamente la comprobación de seguridad antes de publicarse.
 
 Los datos locales, `.env`, `data`, `build`, `dist`, entornos virtuales, registros,
 bases de datos, credenciales y claves privadas están excluidos.
